@@ -1,6 +1,6 @@
 public class Rodent {
 	String getName() {
-		return "Äö³İ¶¯Îï";
+		return "å•®é½¿åŠ¨ç‰©";
 	}
 	
 	public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class Rodent {
 		a[2] = new Gerbil();
 		a[3] = new Hamster();
 		for(Rodent r : a) {
-			System.out.println("ÕâÊÇÒ»Ö»" + r.getName());
+			System.out.println("è¿™æ˜¯ä¸€åª" + r.getName());
 		}
 	}
 }
@@ -18,20 +18,20 @@ public class Rodent {
 class Mouse extends Rodent {
 	@Override
 	String getName() {
-		return "ÀÏÊó";
+		return "è€é¼ ";
 	}
 }
 
 class Gerbil extends Mouse {
 	@Override
 	String getName() {
-		return "÷úÊó";
+		return "é¼¹é¼ ";
 	}
 }
 
 class Hamster extends Gerbil {
 	@Override
 	String getName() {
-		return "´ó¼ÕÊó";
+		return "å¤§é¢Šé¼ ";
 	}
 }

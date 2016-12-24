@@ -4,19 +4,19 @@ interface PunishBehavior {
 
 class NoPunish implements PunishBehavior {
 	public void punish() {
-		System.out.println("¹µÍ¨½ÌÓı£¬È»ºó·Å×ß");
+		System.out.println("æ²Ÿé€šæ•™è‚²ï¼Œç„¶åæ”¾èµ°");
 	}
 }
 
 class MoneyPunish implements PunishBehavior {
 	public void punish() {
-		System.out.println("·£Ç®£¡");
+		System.out.println("ç½šé’±ï¼");
 	}
 }
 
 class ChatPunish implements PunishBehavior {
 	public void punish() {
-		System.out.println("ÁÄÌì×ö½ÚÄ¿");
+		System.out.println("èŠå¤©åšèŠ‚ç›®");
 	}
 }
 
@@ -33,19 +33,19 @@ public class Police {
 	}
 	
 	void PerformPunish() {
-		System.out.print("¾¯²ì<" + this.name + ">Ñ¡ÔñÁË");
+		System.out.print("è­¦å¯Ÿ<" + this.name + ">é€‰æ‹©äº†");
 		this.punishBehavior.punish();
 	}
 	
 	public static void main(String[] args) {
-		Police good = new Police("ºÃ¾¯²ì", new NoPunish());
-		Police another = new Police("ÁíÒ»¸ö¾¯²ì", new MoneyPunish());
-		Police tt = new Police("Ì·Ì¸", new ChatPunish());
-		System.out.println("ÀîÀ×ÔÚÒ»¸öÂ·¿ÚµÄÊ±ºò±»Ò»¸ö¾¯²ìÀ¹ÏÂÀ´ÁË¡£");
+		Police good = new Police("å¥½è­¦å¯Ÿ", new NoPunish());
+		Police another = new Police("å¦ä¸€ä¸ªè­¦å¯Ÿ", new MoneyPunish());
+		Police tt = new Police("è°­è°ˆ", new ChatPunish());
+		System.out.println("æé›·åœ¨ä¸€ä¸ªè·¯å£çš„æ—¶å€™è¢«ä¸€ä¸ªè­¦å¯Ÿæ‹¦ä¸‹æ¥äº†ã€‚");
 		good.PerformPunish();
-		System.out.println("µÚ¶şÌì£¬ÀîÀ×ÓÖ±»Ò»¸ö¾¯²ì¸øÀ¹ÏÂÀ´ÁË");
+		System.out.println("ç¬¬äºŒå¤©ï¼Œæé›·åˆè¢«ä¸€ä¸ªè­¦å¯Ÿç»™æ‹¦ä¸‹æ¥äº†");
 		another.PerformPunish();
-		System.out.println("µÚÈıÌì£¬ÀîÀ×ÓÖ±»Ò»¸ö¾¯²ìÀ¹ÏÂÁË¡£");
+		System.out.println("ç¬¬ä¸‰å¤©ï¼Œæé›·åˆè¢«ä¸€ä¸ªè­¦å¯Ÿæ‹¦ä¸‹äº†ã€‚");
 		tt.PerformPunish();
 	}
 

@@ -6,16 +6,16 @@ public class Guess {
 		int target = (int) (Math.random()*100+1);
 		int guessed;
 		Scanner input=new Scanner(System.in);
-		System.out.println("ÇëÊäÈëÒ»¸öÔÚ1~100Ö®¼äµÄÊı×Ö£º");
+		System.out.println("è¯·è¾“å…¥ä¸€ä¸ªåœ¨1~100ä¹‹é—´çš„æ•°å­—ï¼š");
 		while((guessed = input.nextInt()) != target) {
 			if (guessed > target) {
-				System.out.println("´óÁË£¡");
+				System.out.println("å¤§äº†ï¼");
 			} else {
-				System.out.println("Ğ¡ÁË£¡");
+				System.out.println("å°äº†ï¼");
 			}
-			System.out.print("ÔÙÊÔÒ»ÏÂ: ");
+			System.out.print("å†è¯•ä¸€ä¸‹: ");
 		}
 		input.close();
-		System.out.println("Äã²Â¶ÔÁË£¬Õæ°ô£¡");
+		System.out.println("ä½ çŒœå¯¹äº†ï¼ŒçœŸæ£’ï¼");
 	}
 }

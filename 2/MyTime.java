@@ -1,4 +1,3 @@
-
 public class MyTime {
 	private int hour;
 	private int minute;

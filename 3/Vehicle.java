@@ -1,24 +1,23 @@
-
 abstract class Vehicle {
 	abstract String NoOfWheels();
 	
 	public static void main(String[] args) {
 		Car c = new Car();
-		System.out.println("Car ÊÇ" + c.NoOfWheels());
+		System.out.println("Car æ˜¯" + c.NoOfWheels());
 		Motorbike m = new Motorbike();
-		System.out.println("Motorbike ÊÇ" + m.NoOfWheels());
+		System.out.println("Motorbike æ˜¯" + m.NoOfWheels());
 	}
 }
 
 class Car extends Vehicle {
 	String NoOfWheels() {
-		return "ËÄÂÖ³µ£¡";
+		return "å››è½®è½¦ï¼";
 	}
 }
 
 class Motorbike extends Vehicle {
 	String NoOfWheels() {
-		return "Ë«ÂÖ³µ£¡";
+		return "åŒè½®è½¦ï¼";
 	}
 }
 
