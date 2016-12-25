@@ -40,7 +40,7 @@ public class IO {
 		return count;
 	}
 	public static boolean IsPunctuation(int s) {
-		for(char c: ",./?![]{} \"'£¡£¿¡°¡±¡¾¡¿¡º¡»".toCharArray()) {
+		for(char c: ",./?![]{} \"'ï¼ï¼Ÿâ€œâ€ã€ã€‘ã€ã€".toCharArray()) {
 			if (s == c) {
 				return true;
 			}
@@ -49,24 +49,24 @@ public class IO {
 	}
 	public static void main(String[] args) {
 		try {
-			InputStream in = new FileInputStream(new File("°×Ò¹ĞĞ.txt"));
+			InputStream in = new FileInputStream(new File("ç™½å¤œè¡Œ.txt"));
 			long startMs = System.currentTimeMillis();
-			System.out.println("±êµã·ûºÅ: " + countPunctuation(in));	
+			System.out.println("æ ‡ç‚¹ç¬¦å·: " + countPunctuation(in));	
 			long endMs = System.currentTimeMillis();
-			System.out.println("µ¥Ïß³ÌºÄÊ±:" + (double)(endMs - startMs) / 1000 + "Ãë");
+			System.out.println("å•çº¿ç¨‹è€—æ—¶:" + (double)(endMs - startMs) / 1000 + "ç§’");
 			try {
 				in.close();				
 			} catch(IOException e) {}
 			
-			in = new FileInputStream(new File("°×Ò¹ĞĞ.txt"));
+			in = new FileInputStream(new File("ç™½å¤œè¡Œ.txt"));
 			CountThread t1 = new CountThread(in),
 					t2 = new CountThread(in);
 			startMs = System.currentTimeMillis();
 			t1.start();
 			t2.start();
-			System.out.println("±êµã·ûºÅ: " + (t1.joinWithResult() + t2.joinWithResult()));
+			System.out.println("æ ‡ç‚¹ç¬¦å·: " + (t1.joinWithResult() + t2.joinWithResult()));
 			endMs = System.currentTimeMillis();
-			System.out.println("Ë«Ïß³ÌºÄÊ±:" + (double)(endMs - startMs) / 1000 + "Ãë");
+			System.out.println("åŒçº¿ç¨‹è€—æ—¶:" + (double)(endMs - startMs) / 1000 + "ç§’");
 		} catch(FileNotFoundException e) {
 			System.err.println("No such file");
 			System.exit(1);

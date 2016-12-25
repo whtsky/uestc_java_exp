@@ -9,15 +9,15 @@ class SortThread extends Thread {
 		this.start = start;
 		this.end = end;
 	}
-	
+
 	public int getStart() {
 		return this.start;
 	}
-	
+
 	public int getEnd() {
 		return this.end;
 	}
-	
+
 	@Override
 	public void run() {
 		MergeSort.sort(arr, start, end);
@@ -31,7 +31,7 @@ public class MergeSort {
 		}
 		System.out.println();
 	}
-	
+
 	static int[] randArray(int length) {
 		int[] rv = new int[length];
 		Random r = new Random();
@@ -40,7 +40,7 @@ public class MergeSort {
 		}
 		return rv;
 	}
-	
+
 	static void merge(int[] rv, int start, int mid, int end) {
 		int[] a = Arrays.copyOfRange(rv, start, mid + 1);
 		int[] b = Arrays.copyOfRange(rv, mid + 1, end + 1);
@@ -77,7 +77,7 @@ public class MergeSort {
 				a.length - 1
 		);
 		t[concurrency - 1].start();
-		
+
 		for(SortThread s: t) {
 			try {
 				s.join();
@@ -85,7 +85,7 @@ public class MergeSort {
 			MergeSort.merge(a, 0, s.getStart(), s.getEnd());
 		}
 	}
-	
+
 	static void sort(int[] a, int start, int end) {
 		if(end <= start) {
 			return;
@@ -95,21 +95,21 @@ public class MergeSort {
 			sort(a, start, mid);
 		}
 		if (end > mid) {
-			sort(a, mid + 1, end);			
+			sort(a, mid + 1, end);
 		}
 		merge(a, start, mid, end);
 	}
-	
+
 	public static void main(String[] args) {
 		int length = 10000000;
 		int[] a;
-		System.out.println("Êý×é³¤¶È£º" + length);
+		System.out.println("æ•°ç»„é•¿åº¦ï¼š" + length);
 		for(int concurrency=1; concurrency < 12; concurrency++) {
 			a = randArray(length);
 			long startMs = System.currentTimeMillis();
 			sort(a, concurrency);
 			long endMs = System.currentTimeMillis();
-			System.out.println("²¢·¢Êý£º " + concurrency + "; ºÄÊ±£º " + (endMs - startMs) + "ºÁÃë");
+			System.out.println("å¹¶å‘æ•°ï¼š " + concurrency + "; è€—æ—¶ï¼š " + (endMs - startMs) + "æ¯«ç§’");
 		}
 	}
 }
