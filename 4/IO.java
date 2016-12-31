@@ -1,19 +1,22 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 class CountThread extends Thread {
-	InputStream i;
+	BufferedReader i;
 	int result;
-	CountThread(InputStream i) {
+	CountThread(BufferedReader i) {
 		this.i = i;
 		this.result = 0;
 	}
 	@Override
 	public void run() {
-		this.result = IO.countPunctuation(this.i);
+		this.result = IO.countPunctuation(this.i, false);
 	}
 	
 	public int joinWithResult() {
@@ -26,21 +29,36 @@ class CountThread extends Thread {
 }
 
 public class IO {
-	public static int countPunctuation(InputStream in) {
+	public static int countPunctuation(BufferedReader in) {
+		return countPunctuation(in, true);
+	}
+
+	public static int countPunctuation(BufferedReader in, Boolean print) {
 		int count = 0;
-		int s;
+		String s;
+		char ch;
 		try {
-			while((s = in.read()) != -1) {
-				if (IsPunctuation(s)) {
-					count++;
+			for(;(s=in.readLine())!=null;){
+				for(int i=0;i<s.length();i++){
+					ch = s.charAt(i);
+					if (IsPunctuation(ch)) {
+						if (print) {
+							System.out.printf("%c ", ch);						
+						}
+						count++;
+					}
 				}
 			}
-		} catch (IOException e) {
+		} catch(IOException e) {
+			return 0;
+		}
+		if (print) {
+			System.out.println("");
 		}
 		return count;
 	}
-	public static boolean IsPunctuation(int s) {
-		for(char c: ",./?![]{} \"'！？“”【】『』".toCharArray()) {
+	public static boolean IsPunctuation(char s) {
+		for(char c: ",./?![]{}：…'！？“”【】『』，。“”".toCharArray()) {
 			if (s == c) {
 				return true;
 			}
@@ -49,16 +67,15 @@ public class IO {
 	}
 	public static void main(String[] args) {
 		try {
-			InputStream in = new FileInputStream(new File("白夜行.txt"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream("白夜行.txt"),"UTF-8"));
+			countPunctuation(in, true);
+
+			in = new BufferedReader(new InputStreamReader(new FileInputStream("白夜行.txt"),"UTF-8"));			
 			long startMs = System.currentTimeMillis();
-			System.out.println("标点符号: " + countPunctuation(in));	
+			System.out.println("标点符号: " + countPunctuation(in, false));	
 			long endMs = System.currentTimeMillis();
 			System.out.println("单线程耗时:" + (double)(endMs - startMs) / 1000 + "秒");
-			try {
-				in.close();				
-			} catch(IOException e) {}
-			
-			in = new FileInputStream(new File("白夜行.txt"));
+			in = new BufferedReader(new InputStreamReader(new FileInputStream("白夜行.txt"),"UTF-8"));
 			CountThread t1 = new CountThread(in),
 					t2 = new CountThread(in);
 			startMs = System.currentTimeMillis();
@@ -70,6 +87,9 @@ public class IO {
 		} catch(FileNotFoundException e) {
 			System.err.println("No such file");
 			System.exit(1);
+		} catch(UnsupportedEncodingException e) {
+			System.err.println("Don't support UTF-8");
+			System.exit(1);			
 		}
 	}
 }
